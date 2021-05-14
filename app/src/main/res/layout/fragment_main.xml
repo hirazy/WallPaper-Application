@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/drawerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:nestedScrollingEnabled="false"
+            android:id="@+id/vpgMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="60dp" />
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/btmNavMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_bg_btm_nav"
+            android:theme="@style/Widget.BottomNavigationView"
+            app:itemBackground="@color/color_bg_btm_nav"
+            app:itemHorizontalTranslationEnabled="false"
+            app:itemIconTint="@color/ic_item_menu_main"
+            app:itemTextColor="#FFFFFF"
+            app:menu="@menu/menu_main" />
+    </RelativeLayout>
+</layout>

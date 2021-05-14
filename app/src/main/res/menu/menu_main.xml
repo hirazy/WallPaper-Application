@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/itemBtmTop" android:title="" android:icon="@drawable/ic_menu_top"/>
+    <item android:id="@+id/itemBtm4D" android:title="" android:icon="@drawable/ic_menu_4d"/>
+    <item android:id="@+id/itemBtmLive" android:title="" android:icon="@drawable/ic_menu_live"/>
+    <item android:id="@+id/itemBtm4K" android:title="" android:icon="@drawable/ic_menu_4k"/>
+    <item android:id="@+id/itemBtmCategories" android:title="" android:icon="@drawable/ic_menu_categories"/>
+
+</menu>
