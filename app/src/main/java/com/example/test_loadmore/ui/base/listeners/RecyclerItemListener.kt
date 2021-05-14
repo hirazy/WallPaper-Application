@@ -9,6 +9,5 @@ import com.example.test_loadmore.base.OBase
 
 interface RecyclerItemListener {
     fun onItemSelected(index: Int, data: OBase)
-
     fun onOption(index: Int, data: OBase)
 }

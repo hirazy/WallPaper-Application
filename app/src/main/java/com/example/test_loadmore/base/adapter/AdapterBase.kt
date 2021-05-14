@@ -42,7 +42,6 @@ abstract class AdapterBase<K : OBase, T : ViewDataBinding>(var event: RecyclerIt
     }
 
     override fun onBindViewHolder(holder: BaseHolder<T>, position: Int) {
-
             bindView(holder, position);
             holder.itemBinding.root.setOnClickListener {
                 event?.onItemSelected(position, listData[position])
@@ -51,8 +50,6 @@ abstract class AdapterBase<K : OBase, T : ViewDataBinding>(var event: RecyclerIt
                 event?.onItemSelected(position, listData[position])
                 true
             }
-
-
     }
 
     abstract fun bindView(itemBinding: BaseHolder<T>, position: Int)
