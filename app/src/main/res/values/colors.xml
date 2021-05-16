@@ -18,10 +18,14 @@
     <color name="color_menu">#FFFFFC</color>
     <color name="color_bg_btm_nav">#FFFFFF</color>
 
+    <color name="primary">#171717</color>
+
 
     <color name="textColor">#232323</color>
     <color name="ic_item_menu_main">#6E6E6E</color>
     <color name="colorTopSearch">#858583</color>
     <color name="color_viewAll">#00E2FF</color>
+
+    <color name="colorBgDetail">#80837D54</color>
 
 </resources>

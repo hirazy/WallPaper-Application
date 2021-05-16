@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.component.detail.image.DetailImageFragment">
+
+        <ImageView
+            android:id="@+id/imgDetailImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter" />
+
+        <RelativeLayout
+            android:id="@+id/layoutDetailImageBack"
+            android:background="@drawable/bg_detail_round_small"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+            <ImageView
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_detail_back"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="@drawable/bg_detail_round_small"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+            <ImageView
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_detail_unfavorite"
+                />
+        </RelativeLayout>
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:background="@drawable/bg_detail_round_small"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+
+        </com.github.clans.fab.FloatingActionMenu>
+
+        <RelativeLayout
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/bg_detail_round_big"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp">
+            <ImageView
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_detail_download"
+                />
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/pbDetailImage"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="#FFFFFF"
+            />
+
+    </RelativeLayout>
+</layout>

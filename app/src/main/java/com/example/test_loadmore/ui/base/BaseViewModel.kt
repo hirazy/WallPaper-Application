@@ -1,7 +1,6 @@
 package com.example.test_loadmore.ui.base
 
 import androidx.lifecycle.ViewModel
-import java.util.logging.ErrorManager
 
 import javax.inject.Inject
 
@@ -16,5 +15,5 @@ abstract class BaseViewModel : ViewModel() {
      * Use this errorManager to get the Errors
      */
     @Inject
-    lateinit var errorManager: ErrorManager
+    lateinit var errorManager: com.example.test_loadmore.error.ErrorManager
 }

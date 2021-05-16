@@ -1,8 +1,6 @@
 package com.example.test_loadmore
 
 import android.app.Application
-import androidx.room.Room
-import com.example.test_loadmore.data.local.room.RoomDB
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -19,15 +17,15 @@ open class App: Application(){
     companion object {
         @get:Synchronized
         lateinit var instance: App
-        lateinit var room_db: RoomDB
+       // lateinit var room_db: RoomDB
 
-        fun dataBase(): RoomDB {
-
-            room_db = Room.databaseBuilder(
-                instance, RoomDB::class.java,
-                KEY_DATABASE
-            ).allowMainThreadQueries().build()
-            return room_db
-        }
+//        fun dataBase(): RoomDB {
+//
+//            room_db = Room.databaseBuilder(
+//                instance, RoomDB::class.java,
+//                KEY_DATABASE
+//            ).allowMainThreadQueries().build()
+//            return room_db
+//        }
     }
 }

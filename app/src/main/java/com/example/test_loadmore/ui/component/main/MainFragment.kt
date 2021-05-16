@@ -17,10 +17,10 @@ import com.example.test_loadmore.KEY_SAVE_MODE
 import com.example.test_loadmore.LIGHT_MODE
 import com.example.test_loadmore.NIGHT_MODE
 import com.example.test_loadmore.R
-import com.example.test_loadmore.base.data.preference.PrefHelperImpl
 import com.example.test_loadmore.databinding.FragmentMainBinding
 import com.example.test_loadmore.ui.base.BaseFragment
 import com.example.test_loadmore.ui.component.main.adapter.PagerAdapter
+import com.example.test_loadmore.ui.component.main.top.TopFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -63,14 +63,14 @@ class MainFragment : BaseFragment() {
         binding = FragmentMainBinding.inflate(layoutInflater)
         val view = binding.root
 
-        if (PrefHelperImpl(requireActivity().application).getData(KEY_SAVE_MODE).equals("")) {
-            PrefHelperImpl(requireActivity().application).setData(KEY_SAVE_MODE, LIGHT_MODE)
-        }
-
-        if (PrefHelperImpl(requireActivity().application).getData(KEY_SAVE_MODE) == NIGHT_MODE) {
-
-            requireContext().setTheme(R.style.darkTheme)
-        } else requireContext().setTheme(R.style.AppTheme)
+//        if (PrefHelperImpl(requireActivity().application).getData(KEY_SAVE_MODE).equals("")) {
+//            PrefHelperImpl(requireActivity().application).setData(KEY_SAVE_MODE, LIGHT_MODE)
+//        }
+//
+//        if (PrefHelperImpl(requireActivity().application).getData(KEY_SAVE_MODE) == NIGHT_MODE) {
+//
+//            requireContext().setTheme(R.style.darkTheme)
+//        } else requireContext().setTheme(R.style.AppTheme)
 
         super.onCreate(savedInstanceState)
 
@@ -117,6 +117,8 @@ class MainFragment : BaseFragment() {
 
         binding.vpgMain.adapter = adapter
 
+        binding.vpgMain.isUserInputEnabled = false
+
         binding.vpgMain.setOnTouchListener { arg0, arg1 -> true }
 
         binding.vpgMain.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -145,6 +147,5 @@ class MainFragment : BaseFragment() {
 
         binding.vpgMain.offscreenPageLimit = 5
     }
-
 
 }

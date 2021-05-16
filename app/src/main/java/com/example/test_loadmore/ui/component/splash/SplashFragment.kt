@@ -77,7 +77,7 @@ class SplashFragment : BaseFragment() {
         }
 
         val handler = Handler()
-        handler.postDelayed(Runnable { navigate() }, 2000)
+        handler.postDelayed(Runnable { navigate() }, 1000)
     }
 
     private fun navigate() {
@@ -96,7 +96,7 @@ class SplashFragment : BaseFragment() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val linearLayoutManager: LinearLayoutManager =
-                    recyclerView.getLayoutManager() as LinearLayoutManager
+                    recyclerView.layoutManager as LinearLayoutManager
                 if (!isLoading) {
                     if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() === list.size - 1) {
                         loadMore()

@@ -9,18 +9,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFFFFF"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:background="#E6F6FFA2" />
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/swrTop"
-            />
 
         <LinearLayout
             android:id="@+id/layoutTopToolBar"
@@ -33,12 +28,12 @@
             android:paddingBottom="7dp">
 
             <ImageButton
-                android:padding="3dp"
                 android:id="@+id/btnTopMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@null"
+                android:padding="3dp"
                 android:src="@drawable/ic_main_menu" />
 
             <LinearLayout
@@ -70,95 +65,143 @@
             </LinearLayout>
         </LinearLayout>
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swrTop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/layoutTopToolBar">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutTopToolBar"
+            >
 
-            <LinearLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                >
 
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/vpgTopCategories"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp" />
+                    android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp">
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/vpgTopCategories"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:layout_marginTop="5dp" />
 
-                    <LinearLayout
-                        android:layout_width="3dp"
-                        android:layout_height="20dp"
-                        android:layout_centerVertical="true"
-                        android:background="@color/ic_item_menu_main" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/font2"
-                        android:text="@string/tv_top_you"
-                        android:textColor="@color/textColor"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvYouViewAll"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="@string/tv_viewAll"
-                        android:textColor="#00CCFF"
-                        android:textSize="18sp" />
-                </RelativeLayout>
+                        android:layout_marginTop="10dp">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginRight="5dp" />
+                        <LinearLayout
+                            android:layout_width="3dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:background="@color/ic_item_menu_main" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/font2"
+                            android:text="@string/tv_top_you"
+                            android:textColor="@color/textColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                    <LinearLayout
-                        android:layout_width="3dp"
-                        android:layout_height="20dp"
-                        android:layout_centerVertical="true"
-                        android:background="@color/ic_item_menu_main" />
+                        <TextView
+                            android:id="@+id/tvYouViewAll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="4dp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:text="@string/tv_viewAll"
+                            android:textColor="#00CCFF"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/font2"
-                        android:text="@string/tv_top_trending"
-                        android:textColor="@color/textColor"
-                        android:textSize="18sp" />
-                </RelativeLayout>
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcclvTrending"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp" />
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcclvForYou"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <ProgressBar
+                            android:id="@+id/pbTopForYou"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp">
+
+                        <LinearLayout
+                            android:layout_width="3dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:background="@color/ic_item_menu_main" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/font2"
+                            android:text="@string/tv_top_trending"
+                            android:textColor="@color/textColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        >
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcclvTrending"
+                            android:paddingBottom="@dimen/_50sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <ProgressBar
+                            android:id="@+id/pbTopTrending"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true" />
+                    </RelativeLayout>
+
+                    <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+                        style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+
+                        android:id="@+id/pbTop"
+                        android:layout_gravity="center"
+                        android:indeterminate="true"
+                        app:mpb_progressStyle="horizontal" />
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </RelativeLayout>
 </layout>

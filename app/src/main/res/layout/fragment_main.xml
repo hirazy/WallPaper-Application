@@ -17,8 +17,7 @@
             android:id="@+id/vpgMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="60dp" />
-
+            />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/btmNavMain"

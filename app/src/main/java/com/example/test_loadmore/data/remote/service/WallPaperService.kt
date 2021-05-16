@@ -5,7 +5,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface ImageService {
+interface WallPaperService {
     @GET("{path}")
-    suspend fun fetchImages(@Path("path") path: String): Response<List<Image>>
+    suspend fun fetchData(@Path("path") path: String): Response<Any>
 }

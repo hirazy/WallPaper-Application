@@ -19,8 +19,8 @@
             android:id="@+id/action_mainFragment_to_viewAllFragment"
             app:destination="@id/viewAllFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_mainFragment_to_detailImageFragment"
+            app:destination="@id/detailImageFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -38,9 +38,6 @@
         <action
             android:id="@+id/action_searchFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_searchFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsActivity"
@@ -55,26 +52,30 @@
         android:id="@+id/viewAllFragment"
         android:name="com.example.test_loadmore.ui.component.viewall.ViewAllFragment"
         android:label="ViewAllFragment" >
+
+        <argument
+            android:name="data"
+            app:argType="com.example.test_loadmore.data.dto.argument.ArgumentViewAll"
+            app:nullable="true"
+            />
+
         <action
             android:id="@+id/action_viewAllFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_viewAllFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.example.test_loadmore.ui.component.detail.DetailFragment"
-        android:label="detail_fragment"
-        tools:layout="@layout/detail_fragment" >
+        android:id="@+id/detailImageFragment"
+        android:name="com.example.test_loadmore.ui.component.detail.image.DetailImageFragment"
+        android:label="DetailImageFragment" >
+
+        <argument
+            android:name="data"
+            app:argType="com.example.test_loadmore.data.dto.argument.ArgumentDetailImage"
+            app:nullable="true"
+            />
+
         <action
-            android:id="@+id/action_detailFragment_to_mainFragment"
+            android:id="@+id/action_detailImageFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_detailFragment_to_viewAllFragment"
-            app:destination="@id/viewAllFragment" />
-        <action
-            android:id="@+id/action_detailFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
     </fragment>
 </navigation>

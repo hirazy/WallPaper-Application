@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="o"
+            type="com.example.test_loadmore.data.dto.image.Image" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        app:cardCornerRadius="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_180sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <ImageView
+                android:id="@+id/imgWpp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                />
+
+            <ImageView
+                android:visibility="gone"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@{o.type == 2? @drawable/ic_btn_livewpp: o.type == 1 ? @drawable/ic_btn_4d: @drawable/ic_btn_4k}"
+                />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

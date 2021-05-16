@@ -1,4 +1,4 @@
-package com.example.mod_gun.data.error
+package com.example.test_loadmore.data.error
 
 /**
  * Created by AhmedEltaher

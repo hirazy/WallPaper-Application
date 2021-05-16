@@ -5,22 +5,26 @@ import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.viewpager.widget.PagerAdapter
 import com.example.test_loadmore.R
 import com.example.test_loadmore.URL_IMAGE
+import com.example.test_loadmore.data.dto.categories.top.CategoryTop
 import com.example.test_loadmore.data.dto.image.Image
 import com.squareup.picasso.Picasso
+import java.lang.Exception
 import kotlin.math.roundToInt
 
 class CategoriesTopAdapter(
-    private val list: List<Image>,
+    private val list: List<CategoryTop>,
     var context: Context,
-    var listener: (pos: Int) -> Unit
+    var listener: (name: String) -> Unit
 ) : PagerAdapter() {
 
     override fun isViewFromObject(v: View, `object`: Any): Boolean {
@@ -35,15 +39,26 @@ class CategoriesTopAdapter(
         val view = LayoutInflater.from(container.context)
             .inflate(R.layout.item_top_image, container, false)
 
+
         var imageView = view.findViewById<ImageView>(R.id.imgTopCategory)
 
-        scaleImage(imageView)
+        Picasso.get().load(list[position].thumb).fit().into(imageView,  object: com.squareup.picasso.Callback{
+            override fun onSuccess() {
+                // scaleImage(imageView)
+            }
+
+            override fun onError(e: Exception?) {
+
+            }
+
+        })
 
         imageView.setOnClickListener {
-            listener(position)
+            listener(list[position].name)
         }
 
-        Picasso.get().load(URL_IMAGE + list[position].id).fit().into(imageView)
+        Log.e("instantiateItem",  list[position].thumb)
+
         container.addView(view)
         return view
     }
@@ -80,7 +95,7 @@ class CategoriesTopAdapter(
         height = scaledBitmap.height // re-use
         val result = BitmapDrawable(scaledBitmap)
         view.setImageDrawable(result)
-        val params = view.layoutParams as LinearLayout.LayoutParams
+        val params = view.layoutParams as RelativeLayout.LayoutParams
         params.width = width
         params.height = height
         view.layoutParams = params

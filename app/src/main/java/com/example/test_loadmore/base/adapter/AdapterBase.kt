@@ -31,6 +31,10 @@ abstract class AdapterBase<K : OBase, T : ViewDataBinding>(var event: RecyclerIt
         )
     }
 
+    fun add(o: K){
+        listData.add(o)
+    }
+
     fun setData(it: List<K>) {
         listData.clear()
         listData.addAll(it)

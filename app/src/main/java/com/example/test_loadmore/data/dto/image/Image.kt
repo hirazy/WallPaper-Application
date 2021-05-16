@@ -11,10 +11,10 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Image (
     @SerializedName("id")
-    var id: String,
+    var id: Int = 0,
 
     @SerializedName("type")
-    var type: String
+    var type: Int = 0
 ): OBase(){
 
     @PrimaryKey

@@ -1,9 +1,9 @@
 package com.example.test_loadmore.data.error.mapper
 
 import android.content.Context
-import com.example.mod_gun.data.error.*
 import com.example.mod_gun.data.error.mapper.ErrorMapperSource
 import com.example.test_loadmore.R
+import com.example.test_loadmore.data.error.*
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
