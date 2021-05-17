@@ -78,27 +78,27 @@ class MainFragment : BaseFragment() {
             when (it.itemId) {
                 R.id.itemBtmTop -> {
                     // Change Fragment to Top
-                    binding.vpgMain.currentItem = 0
+                    binding.vpgMain.setCurrentItem(0, false)
                 }
 
                 R.id.itemBtm4D -> {
                     // Change Fragment to 4D
-                    binding.vpgMain.currentItem = 1
+                    binding.vpgMain.setCurrentItem(1, false)
                 }
 
                 R.id.itemBtm4K -> {
                     // Change Fragment to Live
-                    binding.vpgMain.currentItem = 2
+                    binding.vpgMain.setCurrentItem(2, false)
                 }
 
                 R.id.itemBtm4K -> {
                     //Change Fragment to 4K
-                    binding.vpgMain.currentItem = 3
+                    binding.vpgMain.setCurrentItem(3, false)
                 }
 
                 R.id.itemBtmCategories -> {
                     // Change Fragment to Categories
-                    binding.vpgMain.currentItem = 4
+                    binding.vpgMain.setCurrentItem(4, false)
                 }
             }
             true

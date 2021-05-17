@@ -33,4 +33,10 @@
     <string name="invalid_username_and_password">please check your username and password</string>
     <string name="add_to_favorite">Add to favorite</string>
     <string name="search_error">there is no such addon name</string>
+
+    <string name="tv4DWallPaper">4D Wallpaper</string>
+    <string name="tvLiveWallPaper">Live WallPaper</string>
+    <string name="tv4KWallPaper">4K WallPaper</string>
+    <string name="tvCategories">Categories</string>
+
 </resources>

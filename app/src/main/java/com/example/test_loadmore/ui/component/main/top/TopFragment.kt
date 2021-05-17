@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.example.test_loadmore.For_You
 import com.example.test_loadmore.base.OBase
 import com.example.test_loadmore.data.Resource
 import com.example.test_loadmore.data.dto.argument.ArgumentDetailImage
@@ -80,7 +81,7 @@ class TopFragment : BaseFragment() {
             handler.postDelayed({
                 init = false
                 binding.drawerLayout.swrTop.isRefreshing = false
-                viewModel.reloadTrending()
+                // viewModel.reloadTrending()
             }, 3000)
 
         }
@@ -102,12 +103,12 @@ class TopFragment : BaseFragment() {
         })
 
         binding.drawerLayout.tvYouViewAll.setOnClickListener {
-//            var birections = MainFragmentDirections.actionMainFragmentToViewAllFragment(
-//
-//            )
-//            view?.let { _view ->
-//                Navigation.findNavController(_view).navigate(birections)
-//            }
+            var birections = MainFragmentDirections.actionMainFragmentToViewAllFragment(
+                ArgumentViewAll(For_You)
+            )
+            view?.let { _view ->
+                Navigation.findNavController(_view).navigate(birections)
+            }
         }
 
         binding.drawerLayout.rcclvForYou.layoutManager =

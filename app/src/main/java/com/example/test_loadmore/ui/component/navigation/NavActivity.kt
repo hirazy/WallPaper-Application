@@ -1,4 +1,4 @@
-package com.example.test_loadmore.ui.component.nav
+package com.example.test_loadmore.ui.component.navigation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

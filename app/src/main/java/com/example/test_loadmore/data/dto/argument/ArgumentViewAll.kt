@@ -6,5 +6,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class ArgumentViewAll(
+
     @SerializedName("name")
     var name: String): OBase()

@@ -17,23 +17,31 @@ class ImageAdapter(event: RecyclerItemListener) : AdapterBase<Image, CardItemWpp
 
         itemBinding.itemBinding.o = listData[position]
 
-        //if(listData[position].type == TYPE_IMAGE){
+        if (listData[position].type == TYPE_IMAGE) {
 
-        Picasso.get().load(BASE_URL + "image/" + listData[position].id.toString() + ".jpg").fit()
-            .into(itemBinding.itemBinding.imgWpp, object : com.squareup.picasso.Callback {
-                override fun onSuccess() {
-                }
+            Picasso.get().load(BASE_URL + "image/" + listData[position].id.toString() + ".jpg")
+                .fit()
+                .into(itemBinding.itemBinding.imgWpp, object : com.squareup.picasso.Callback {
+                    override fun onSuccess() {
+                    }
 
-                override fun onError(e: Exception?) {
-                }
-            })
-        //}
-        //else if(listData[position].type == TYPE_4D){
+                    override fun onError(e: Exception?) {
+                    }
+                })
+        } else if (listData[position].type == TYPE_4D) {
+            Picasso.get().load(BASE_URL + "image/" + listData[position].id.toString() + ".jpg")
+                .fit()
+                .into(itemBinding.itemBinding.imgWpp, object : com.squareup.picasso.Callback {
+                    override fun onSuccess() {
+                    }
 
-        //}
-        //else if(listData[position].type == TYPE_4K){
+                    override fun onError(e: Exception?) {
+                    }
+                })
 
-        //}
+        } else if (listData[position].type == TYPE_4K) {
+
+        }
 
 
     }

@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_mainFragment_to_detailImageFragment"
             app:destination="@id/detailImageFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_swipeImageFragment"
+            app:destination="@id/swipeImageFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -76,6 +79,15 @@
 
         <action
             android:id="@+id/action_detailImageFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/swipeImageFragment"
+        android:name="com.example.test_loadmore.ui.component.detail.swipe.SwipeImageFragment"
+        android:label="swipe_image_fragment"
+        tools:layout="@layout/swipe_image_fragment" >
+        <action
+            android:id="@+id/action_swipeImageFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
 </navigation>
