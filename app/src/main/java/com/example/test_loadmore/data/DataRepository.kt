@@ -1,5 +1,6 @@
 package com.example.test_loadmore.data
 
+import com.example.test_loadmore.data.dto.categories.Category
 import com.example.test_loadmore.data.dto.categories.CategoryL
 import com.example.test_loadmore.data.dto.config.PopularResource
 import com.example.test_loadmore.data.dto.config.TopResource
@@ -40,9 +41,15 @@ class DataRepository @Inject constructor(
         }.flowOn(context)
     }
 
-    override suspend fun requestCategory(): Flow<Resource<List<CategoryL>>> {
+    override suspend fun requestCategory(): Flow<Resource<List<Category>>> {
         return flow {
             emit(remoteDataRepository.requestCategories())
+        }.flowOn(context)
+    }
+
+    override suspend fun requestViewAll(): Flow<Resource<List<CategoryL>>> {
+        return flow{
+            emit(remoteDataRepository.requestViewAll())
         }.flowOn(context)
     }
 

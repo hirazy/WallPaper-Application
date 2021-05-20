@@ -8,12 +8,14 @@
     </data>
 
     <RelativeLayout
+        android:background="#FFFFFF"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.component.main._4d.Fragment_4D">
+        tools:context=".ui.component.main._4k.Fragment_4K">
 
         <RelativeLayout
+            android:id="@+id/layoutTb4K"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -27,10 +29,11 @@
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv4DWallPaper"
+                android:text="@string/tv4KWallPaper"
                 />
 
             <RelativeLayout
+                android:id="@+id/layout4KSearch"
                 android:background="@drawable/bg_round_search"
                 android:layout_marginRight="15dp"
                 android:layout_alignParentRight="true"
@@ -50,8 +53,10 @@
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcclv4K"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutTb4K"
             />
 
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar

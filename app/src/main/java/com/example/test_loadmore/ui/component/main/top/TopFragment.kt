@@ -1,13 +1,13 @@
 package com.example.test_loadmore.ui.component.main.top
 
+import android.R
+import android.annotation.TargetApi
+import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -23,6 +23,7 @@ import com.example.test_loadmore.data.Resource
 import com.example.test_loadmore.data.dto.argument.ArgumentDetailImage
 import com.example.test_loadmore.data.dto.argument.ArgumentViewAll
 import com.example.test_loadmore.data.dto.categories.top.CategoryTop
+import com.example.test_loadmore.data.dto.config.TopResource
 import com.example.test_loadmore.data.dto.image.Image
 import com.example.test_loadmore.databinding.TopFragmentBinding
 import com.example.test_loadmore.ui.base.BaseFragment
@@ -37,7 +38,7 @@ import kotlinx.android.synthetic.main.app_bar_top.view.*
 
 
 @AndroidEntryPoint
-class TopFragment : BaseFragment() {
+class TopFragment(var data: TopResource) : BaseFragment() {
 
     lateinit var binding: TopFragmentBinding
 
@@ -54,10 +55,6 @@ class TopFragment : BaseFragment() {
     var init = false
 
     private var handler: Handler? = null
-
-    companion object {
-        fun newInstance() = TopFragment()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -164,6 +161,8 @@ class TopFragment : BaseFragment() {
                 }
             }
         })
+
+        viewModel.fetchData(data)
 
 
         var view = binding.root
@@ -287,8 +286,27 @@ class TopFragment : BaseFragment() {
         }, 2000)
     }
 
+//    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+//    fun setStatusBarGradiant(activity: Activity) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            val window: Window = activity.window
+//            val background = activity.resources.getDrawable(R.drawable.gradient_theme)
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+//            window.setStatusBarColor(activity.resources.getColor(R.color.transparent))
+//            window.setNavigationBarColor(activity.resources.getColor(R.color.transparent))
+//            window.setBackgroundDrawable(background)
+//        }
+//    }
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun changeColorStatus(image: ImageView) {
+//
+//        val bm = (image.getDrawable() as BitmapDrawable).bitmap
+//
+//        val color: Int = getDominantColor(bm)
+//        val gradient = GradientDrawable(
+//            GradientDrawable.Orientation.TOP_BOTTOM, intArrayOf(0xFFF, color)
+//        )
 //
 //        image.buildDrawingCache()
 //        val bitmap = image.drawingCache

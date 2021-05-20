@@ -20,6 +20,10 @@ class DetailImageFragment : BaseFragment() {
 
     private val viewModel: DetailImageViewModel by viewModels()
 
+    val test : Int  by lazy {
+        1
+    }
+
 
     override fun observeViewModel() {
 
@@ -46,11 +50,37 @@ class DetailImageFragment : BaseFragment() {
 
         binding.layoutDetailImageBack.setOnClickListener {
             view?.let { _view ->
-
                 view?.findNavController()?.navigateUp()
             }
         }
 
+        binding.btnDetailSetWpp.setOnClickListener {
+
+        }
+
+        binding.btnDetailShare.setOnClickListener {
+
+        }
+
+        binding.btnDetailCategory.setOnClickListener {
+
+        }
+
+        binding.btnDetailDownLoad.setOnClickListener {
+
+        }
+
+        binding.btnDetailReport.setOnClickListener {
+
+        }
+
+        binding.btnDetailFavorite.setOnClickListener {
+
+        }
+
+        binding.btnDetailPreview.setOnClickListener {
+
+        }
 
         val view = binding.root
         return view

@@ -1,32 +1,77 @@
 package com.example.test_loadmore.ui.component.main.live
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.test_loadmore.R
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.test_loadmore.base.OBase
+import com.example.test_loadmore.data.Resource
+import com.example.test_loadmore.data.dto.config.PopularResource
+import com.example.test_loadmore.data.dto.image.Image
+import com.example.test_loadmore.databinding.LiveFragmentBinding
+import com.example.test_loadmore.ui.base.BaseFragment
+import com.example.test_loadmore.ui.base.listeners.RecyclerItemListener
+import com.example.test_loadmore.ui.component.adapter.ImageAdapter
+import com.example.test_loadmore.utils.observe
+import dagger.hilt.android.AndroidEntryPoint
 
-class LiveFragment : Fragment() {
+@AndroidEntryPoint
+class LiveFragment(var data: PopularResource) : BaseFragment() {
 
-    companion object {
-        fun newInstance() = LiveFragment()
+    private val viewModel: LiveViewModel by viewModels()
+
+    lateinit var binding: LiveFragmentBinding
+
+    lateinit var adapter: ImageAdapter
+
+    override fun observeViewModel() {
+        observe(viewModel.listData, ::handleRequest)
     }
 
-    private lateinit var viewModel: LiveViewModel
+    private fun handleRequest(data: Resource<List<Image>>) {
+        when (data) {
+            is Resource.Success -> {
+                adapter.setData(data.data!!)
+            }
+
+            is Resource.Loading -> {
+
+            }
+
+            is Resource.DataError -> {
+
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.live_fragment, container, false)
-    }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(LiveViewModel::class.java)
+        binding = LiveFragmentBinding.inflate(layoutInflater)
 
+        adapter = ImageAdapter(object : RecyclerItemListener {
+            override fun onItemSelected(index: Int, data: OBase) {
+
+            }
+
+            override fun onOption(index: Int, data: OBase) {
+
+            }
+
+        })
+
+        viewModel.fetchData(data)
+
+        binding.rcclvLive.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.rcclvLive.adapter = adapter
+
+
+        var view = binding.root
+        return view
     }
 
 }

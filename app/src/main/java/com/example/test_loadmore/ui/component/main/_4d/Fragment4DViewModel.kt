@@ -7,12 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.test_loadmore.TYPE_4D
 import com.example.test_loadmore.data.DataRepositorySource
 import com.example.test_loadmore.data.Resource
+import com.example.test_loadmore.data.dto.config.PopularResource
 import com.example.test_loadmore.data.dto.image.Image
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.random.Random
 
 @HiltViewModel
 class Fragment4DViewModel @Inject constructor(var dataRepositorySource: DataRepositorySource) :
@@ -27,34 +26,39 @@ class Fragment4DViewModel @Inject constructor(var dataRepositorySource: DataRepo
     var end = 0
 
     init {
-       fetchData()
+        // fetchData()
     }
 
-    private fun fetchData() {
+    fun fetchData(data: PopularResource) {
         viewModelScope.launch {
-            dataRepositorySource.request4D().collect {
+            //dataRepositorySource.request4D().collect {
 
-                start = it.data!!.id_start
-                end = it.data!!.id_end
+            start = data!!.id_start
+            end = data!!.id_end
 
-                var listTmpId = ArrayList<Image>()
+            var listTmpId = ArrayList<Image>()
 
-                var range = end - start + 1
+            var range = end - start + 1
 
-                var cnt = 0
+            var cnt = 0
 
-                while (cnt < 2){
-                    var randId = Random.nextInt(range) + start
-
-                    if(setId.contains(randId)){
-                        listTmpId.add(Image(randId, TYPE_4D))
-                        setId.add(randId)
-                        cnt++
-                    }
-                }
-                list4DPrivate.value = Resource.Success(listTmpId)
+            for (i in 0 until end - 1) {
+                var randId = i + 1
+                listTmpId.add(Image(randId, TYPE_4D))
             }
+
+//                while (cnt < 2) {
+//                    var randId = Random.nextInt(range) + start
+//
+//                    if (setId.contains(randId)) {
+//                        listTmpId.add(Image(randId, TYPE_4D))
+//                        setId.add(randId)
+//                        cnt++
+//                    }
+//                }
+            list4DPrivate.value = Resource.Success(listTmpId)
         }
+        //}
     }
 
     fun loadMore() {

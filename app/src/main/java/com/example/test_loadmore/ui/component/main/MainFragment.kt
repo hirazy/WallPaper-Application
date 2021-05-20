@@ -11,12 +11,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.navArgs
 import androidx.palette.graphics.Palette
 import androidx.viewpager2.widget.ViewPager2
 import com.example.test_loadmore.KEY_SAVE_MODE
 import com.example.test_loadmore.LIGHT_MODE
 import com.example.test_loadmore.NIGHT_MODE
 import com.example.test_loadmore.R
+import com.example.test_loadmore.data.dto.argument.ArgumentRequestNetwork
 import com.example.test_loadmore.databinding.FragmentMainBinding
 import com.example.test_loadmore.ui.base.BaseFragment
 import com.example.test_loadmore.ui.component.main.adapter.PagerAdapter
@@ -26,6 +29,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment() {
+
+    val args by navArgs<MainFragmentArgs>()
 
     private lateinit var binding: FragmentMainBinding
 
@@ -86,7 +91,7 @@ class MainFragment : BaseFragment() {
                     binding.vpgMain.setCurrentItem(1, false)
                 }
 
-                R.id.itemBtm4K -> {
+                R.id.itemBtmLive -> {
                     // Change Fragment to Live
                     binding.vpgMain.setCurrentItem(2, false)
                 }
@@ -106,14 +111,13 @@ class MainFragment : BaseFragment() {
 
         setUpPageAdapter()
 
-
         return view
     }
 
     @SuppressLint("ClickableViewAccessibility")
     fun setUpPageAdapter() {
 
-        adapter = PagerAdapter(requireActivity())
+        adapter = PagerAdapter(args.data as ArgumentRequestNetwork, requireActivity())
 
         binding.vpgMain.adapter = adapter
 

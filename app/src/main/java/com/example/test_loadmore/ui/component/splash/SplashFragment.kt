@@ -6,49 +6,67 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test_loadmore.R
+import com.example.test_loadmore.data.Resource
+import com.example.test_loadmore.data.dto.argument.ArgumentRequestNetwork
+import com.example.test_loadmore.databinding.SplashFragmentBinding
 import com.example.test_loadmore.ui.base.BaseFragment
 import com.example.test_loadmore.ui.component.splash.adapter.LoadMoreAdapter
+import com.example.test_loadmore.utils.observe
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.splash_fragment.*
 
 
+@AndroidEntryPoint
 class SplashFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() = SplashFragment()
-    }
-
-    private lateinit var viewModel: SplashViewModel
+    private val viewModel: SplashViewModel by viewModels()
     lateinit var adapter: LoadMoreAdapter
     var isLoading = false
+
+    lateinit var binding: SplashFragmentBinding
 
     var list = ArrayList<String>()
 
     override fun observeViewModel() {
+        observe(viewModel.resultRequest, ::handleRequest)
+    }
 
+    private fun handleRequest(data: Resource<ArgumentRequestNetwork>) {
+        when (data) {
+            is Resource.Success -> {
+                Log.e("handleRequest", data.data!!.category.size.toString())
+                navigate(data.data!!)
+            }
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.splash_fragment, container, false)
+
+        binding = SplashFragmentBinding.inflate(layoutInflater)
+        var view = binding.root
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
 
         populateData()
 
@@ -60,7 +78,7 @@ class SplashFragment : BaseFragment() {
         initScrollListener()
 
         val adRequest = AdRequest.Builder().build()
-        adViewSplash.loadAd(adRequest)
+        //  adViewSplash.loadAd(adRequest)
 
         adViewSplash.adListener = object : AdListener() {
             override fun onAdClosed() {
@@ -75,14 +93,11 @@ class SplashFragment : BaseFragment() {
                 super.onAdFailedToLoad(p0)
             }
         }
-
-        val handler = Handler()
-        handler.postDelayed(Runnable { navigate() }, 1000)
     }
 
-    private fun navigate() {
+    private fun navigate(result: ArgumentRequestNetwork) {
         view?.let { _view ->
-            var birections = SplashFragmentDirections.actionSplashFragmentToMainFragment()
+            var birections = SplashFragmentDirections.actionSplashFragmentToMainFragment(result)
             Navigation.findNavController(_view).navigate(birections)
         }
     }

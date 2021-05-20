@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test_loadmore.base.OBase
 import com.example.test_loadmore.data.Resource
+import com.example.test_loadmore.data.dto.config.PopularResource
 import com.example.test_loadmore.data.dto.image.Image
 import com.example.test_loadmore.databinding.Fragment4DFragmentBinding
 import com.example.test_loadmore.ui.base.BaseFragment
@@ -21,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_4_d_fragment.view.*
 
 @AndroidEntryPoint
-class Fragment_4D : BaseFragment() {
+class Fragment_4D(var data: PopularResource): BaseFragment() {
 
     private val viewModel: Fragment4DViewModel by viewModels()
 
@@ -67,6 +68,8 @@ class Fragment_4D : BaseFragment() {
             }
 
         })
+
+        viewModel.fetchData(data)
 
         binding.rcclv4D.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.rcclv4D.adapter = adapter

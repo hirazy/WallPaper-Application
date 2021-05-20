@@ -1,5 +1,6 @@
 package com.example.test_loadmore.data
 
+import com.example.test_loadmore.data.dto.categories.Category
 import com.example.test_loadmore.data.dto.categories.CategoryL
 import com.example.test_loadmore.data.dto.config.PopularResource
 import com.example.test_loadmore.data.dto.config.TopResource
@@ -14,7 +15,9 @@ interface DataRepositorySource{
 
     suspend fun requestLive(): Flow<Resource<PopularResource>>
 
-    suspend fun requestCategory(): Flow<Resource<List<CategoryL>>>
+    suspend fun requestCategory(): Flow<Resource<List<Category>>>
+
+    suspend fun requestViewAll(): Flow<Resource<List<CategoryL>>>
 
     suspend fun addFavorite(id: String): Flow<Resource<Boolean>>
 }

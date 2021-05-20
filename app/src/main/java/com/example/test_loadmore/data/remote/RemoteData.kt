@@ -1,6 +1,7 @@
 package com.example.test_loadmore.data.remote
 
 import com.example.test_loadmore.data.Resource
+import com.example.test_loadmore.data.dto.categories.Category
 import com.example.test_loadmore.data.dto.categories.CategoryL
 import com.example.test_loadmore.data.dto.config.PopularResource
 import com.example.test_loadmore.data.dto.config.TopResource
@@ -86,9 +87,21 @@ class RemoteData @Inject constructor(
         }
     }
 
-    override suspend fun requestCategories(): Resource<List<CategoryL>> {
+    override suspend fun requestCategories(): Resource<List<Category>> {
         val categoryService = serviceGenerator.createService(CategoryService::class.java)
-        return when (val response = processCall { categoryService.fetchData("top.json") }) {
+        return when (val response = processCall { categoryService.fetchData("category.json") }) {
+            is List<*> -> {
+                Resource.Success(response as List<Category>)
+            }
+            else -> {
+                Resource.DataError(response as Int)
+            }
+        }
+    }
+
+    override suspend fun requestViewAll(): Resource<List<CategoryL>> {
+        val categoryService = serviceGenerator.createService(CategoryService::class.java)
+        return when (val response = processCall { categoryService.fetchData1("categories.json") }) {
             is List<*> -> {
                 Resource.Success(response as List<CategoryL>)
             }

@@ -9,6 +9,13 @@
         android:id="@+id/mainFragment"
         android:name="com.example.test_loadmore.ui.component.main.MainFragment"
         android:label="MainFragment" >
+
+        <argument
+            android:name="data"
+            app:argType="com.example.test_loadmore.data.dto.argument.ArgumentRequestNetwork"
+            app:nullable="true"
+            />
+
         <action
             android:id="@+id/action_mainFragment_to_settingsActivity"
             app:destination="@id/settingsActivity" />
@@ -24,6 +31,9 @@
         <action
             android:id="@+id/action_mainFragment_to_swipeImageFragment"
             app:destination="@id/swipeImageFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_videoImageFragment"
+            app:destination="@id/videoImageFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -65,6 +75,9 @@
         <action
             android:id="@+id/action_viewAllFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_viewAllFragment_to_detailImageFragment"
+            app:destination="@id/detailImageFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailImageFragment"
@@ -80,6 +93,9 @@
         <action
             android:id="@+id/action_detailImageFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_detailImageFragment_to_viewAllFragment"
+            app:destination="@id/viewAllFragment" />
     </fragment>
     <fragment
         android:id="@+id/swipeImageFragment"
@@ -88,6 +104,15 @@
         tools:layout="@layout/swipe_image_fragment" >
         <action
             android:id="@+id/action_swipeImageFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/videoImageFragment"
+        android:name="com.example.test_loadmore.ui.component.detail.video.VideoImageFragment"
+        android:label="video_image_fragment"
+        tools:layout="@layout/video_image_fragment" >
+        <action
+            android:id="@+id/action_videoImageFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

@@ -1,6 +1,7 @@
 package com.example.test_loadmore.data.remote
 
 import com.example.test_loadmore.data.Resource
+import com.example.test_loadmore.data.dto.categories.Category
 import com.example.test_loadmore.data.dto.categories.CategoryL
 import com.example.test_loadmore.data.dto.categories.CategoryList
 import com.example.test_loadmore.data.dto.config.PopularResource
@@ -16,6 +17,8 @@ interface RemoteDataSource {
 
     suspend fun requestLive(): Resource<PopularResource>
 
-    suspend fun requestCategories(): Resource<List<CategoryL>>
+    suspend fun requestCategories(): Resource<List<Category>>
+
+    suspend fun requestViewAll(): Resource<List<CategoryL>>
 
 }

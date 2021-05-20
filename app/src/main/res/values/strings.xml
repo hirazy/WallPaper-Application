@@ -39,4 +39,10 @@
     <string name="tv4KWallPaper">4K WallPaper</string>
     <string name="tvCategories">Categories</string>
 
+    <string name="tvDetailReport">Report</string>
+    <string name="tvDetailShare">Share</string>
+    <string name="tvDetailPreview">Preview</string>
+    <string name="tvDetailAbstract">Abstract</string>
+    <string name="tvDetailSetWallPP">Set as Wallpaper</string>
+
 </resources>

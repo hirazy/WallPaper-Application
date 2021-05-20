@@ -6,15 +6,46 @@
 
     </data>
 
-    <FrameLayout
+    <RelativeLayout
+        android:background="#FFFFFF"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.component.viewall.ViewAllFragment">
+        tools:context=".ui.component.main._4k.Fragment_4K">
 
-        <TextView
+        <RelativeLayout
+            android:id="@+id/layoutTbViewAll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello" />
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/btnBackViewAll"
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_viewall_back"
+                android:layout_centerVertical="true"
+                />
+            <TextView
+                android:id="@+id/tvViewAll"
+                android:fontFamily="@font/fredoka_regular"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:textColor="#151515"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </RelativeLayout>
 
-    </FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcclvViewAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutTbViewAll"
+            />
+    </RelativeLayout>
 </layout>

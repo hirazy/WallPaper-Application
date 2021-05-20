@@ -29,7 +29,7 @@ class ImageAdapter(event: RecyclerItemListener) : AdapterBase<Image, CardItemWpp
                     }
                 })
         } else if (listData[position].type == TYPE_4D) {
-            Picasso.get().load(BASE_URL + "image/" + listData[position].id.toString() + ".jpg")
+            Picasso.get().load(BASE_URL + "4d/" + listData[position].id.toString() + ".jpg")
                 .fit()
                 .into(itemBinding.itemBinding.imgWpp, object : com.squareup.picasso.Callback {
                     override fun onSuccess() {
@@ -40,7 +40,27 @@ class ImageAdapter(event: RecyclerItemListener) : AdapterBase<Image, CardItemWpp
                 })
 
         } else if (listData[position].type == TYPE_4K) {
+            Picasso.get().load(BASE_URL + "4k/" + listData[position].id.toString() + ".jpg")
+                .fit()
+                .into(itemBinding.itemBinding.imgWpp, object : com.squareup.picasso.Callback {
+                    override fun onSuccess() {
+                    }
 
+                    override fun onError(e: Exception?) {
+                    }
+                })
+        }
+
+        else{
+            Picasso.get().load(BASE_URL + "live/" + listData[position].id.toString() + ".jpg")
+                .fit()
+                .into(itemBinding.itemBinding.imgWpp, object : com.squareup.picasso.Callback {
+                    override fun onSuccess() {
+                    }
+
+                    override fun onError(e: Exception?) {
+                    }
+                })
         }
 
 

@@ -27,7 +27,8 @@ var TYPE_4D = 1
 var TYPE_LIVE = 2
 var TYPE_4K = 3
 
-
+var LIVE = "live"
+var VIEW_ALL = "viewAll"
 var _3D = "3D"
 var Abstract = "Abstract"
 var Aircraft = "Aircraft"
@@ -67,3 +68,8 @@ var Texture = "Texture"
 var Tourism = "Tourism"
 var Vehicles = "Vehicles"
 var WaterDrop = "WaterDrop"
+
+var listType = listOf<String>(VIEW_ALL, _3D, Abstract, Aircraft, Amoled, AnimalBird, Anime, Architecture, Art,
+    Babies, Bokeh, Candle, Cartoon, Flowers, For_You, Food, Game, Girl, Kawaii, Love, Macro, Mask, Material,
+    Men, Minimal, Mountain, MultiColor, Music, Nature, NeonFireworks, Ocean, Quote, Reflections, Space, Sports,
+    Stock, Texture, Tourism, Vehicles, WaterDrop)
