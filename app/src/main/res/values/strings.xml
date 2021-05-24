@@ -45,4 +45,16 @@
     <string name="tvDetailAbstract">Abstract</string>
     <string name="tvDetailSetWallPP">Set as Wallpaper</string>
 
+    <string name="tvHintSearch">Search by text</string>
+    <string name="tvSearchEmpty">No data available for this work. Try somehting else</string>
+
+
+    <string name="tvShowingPreview">Showing Preview</string>
+    <string name="tvReportID">Report Item ID: </string>
+    <string name="tvReportSexual">Sexually Explicit</string>
+    <string name="tvReporOffensive">Offensive</string>
+    <string name="tvReportCopyrighted">Copyrighted</string>
+    <string name="contentReportSexual">Please briefly explain why you found it Sexually Explicit</string>
+    <string name="contentReportOffensive">Please briefly explain why you found it Offensive</string>
+    <string name="contentReportCopyrighted">Please briefly explain why you found it Copyrighted</string>
 </resources>

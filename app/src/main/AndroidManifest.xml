@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.test_loadmore">
 
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-
 
     <application
         android:name=".App"
@@ -19,6 +17,7 @@
             android:value="ca-app-pub-3940256099942544~3347511713"/>
 
         <activity android:name=".ui.component.navigation.NavActivity"
+
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

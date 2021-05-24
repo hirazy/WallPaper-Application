@@ -7,7 +7,7 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:background="#FFFFFF"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -15,6 +15,9 @@
         tools:context=".ui.component.main._4k.Fragment_4K">
 
         <RelativeLayout
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center"
             android:id="@+id/layoutTb4K"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -56,17 +59,17 @@
             android:id="@+id/rcclv4K"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutTb4K"
+
             />
 
-        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:id="@+id/pbTop"
-            android:layout_gravity="bottom"
-            android:indeterminate="true"
-            app:mpb_progressStyle="horizontal" />
+<!--        <me.zhanghai.android.materialprogressbar.MaterialProgressBar-->
+<!--            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="10dp"-->
+<!--            android:id="@+id/pbTop"-->
+<!--            android:layout_gravity="bottom"-->
+<!--            android:indeterminate="true"-->
+<!--            app:mpb_progressStyle="horizontal" />-->
 
-    </RelativeLayout>
+    </LinearLayout>
 </layout>

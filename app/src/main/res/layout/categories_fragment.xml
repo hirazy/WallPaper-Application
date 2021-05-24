@@ -14,6 +14,8 @@
         tools:context = "ui.component.main.CategoriesFragment">
 
         <RelativeLayout
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:id="@+id/layoutTbCategories"

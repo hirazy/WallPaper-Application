@@ -15,6 +15,8 @@
         tools:context=".ui.component.main._4d.Fragment_4D">
 
         <RelativeLayout
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
             android:id="@+id/layout4DTB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,13 +34,13 @@
                 android:textStyle="bold" />
 
             <RelativeLayout
+                android:id="@+id/layout4DSearch"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/bg_round_search"
-
                 >
 
                 <ImageView
@@ -56,14 +58,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/layout4DTB" />
 
-        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-            android:id="@+id/pbTop"
-            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_gravity="bottom"
-            android:indeterminate="true"
-            app:mpb_progressStyle="horizontal" />
+<!--        <me.zhanghai.android.materialprogressbar.MaterialProgressBar-->
+<!--            android:id="@+id/pbTop"-->
+<!--            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="10dp"-->
+<!--            android:layout_gravity="bottom"-->
+<!--            android:indeterminate="true"-->
+<!--            app:mpb_progressStyle="horizontal" />-->
 
     </RelativeLayout>
 </layout>

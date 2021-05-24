@@ -5,8 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class ArgumentDetailImage(
+class ArgumentDetailSwipe (
     @SerializedName("id")
-    var id: Int  = 0,
-
-    var type: Int = 0): OBase()
+    var id: Int = 0
+): OBase()

@@ -8,6 +8,8 @@ package com.example.test_loadmore
  * KEY DATABASE
  */
 
+var EMAIL_REPORT = "nangle1234567@gmail.com"
+
 var KEY_DATABASE = "key_database"
 
 var URL_IMAGE = "https://github.com/hirazy2001/WallPaper"
@@ -18,6 +20,7 @@ var KEY_SAVE_MODE = "key_save_mode"
 var NIGHT_MODE = "night_mode"
 var LIGHT_MODE = "light_mode"
 var BASE_URL = "https://raw.githubusercontent.com/hirazy2001/WallPaper/main/"
+var BASE_URL_VIDEO = "https://github.com/hirazy2001/WallPaper/raw/main/live/"
 
 /**
  * KEY TYPE

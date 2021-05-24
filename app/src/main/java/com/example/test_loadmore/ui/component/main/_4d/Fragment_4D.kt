@@ -6,17 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test_loadmore.base.OBase
 import com.example.test_loadmore.data.Resource
+import com.example.test_loadmore.data.dto.argument.ArgumentDetailImage
 import com.example.test_loadmore.data.dto.config.PopularResource
 import com.example.test_loadmore.data.dto.image.Image
 import com.example.test_loadmore.databinding.Fragment4DFragmentBinding
 import com.example.test_loadmore.ui.base.BaseFragment
 import com.example.test_loadmore.ui.base.listeners.RecyclerItemListener
 import com.example.test_loadmore.ui.component.adapter.ImageAdapter
+import com.example.test_loadmore.ui.component.main.MainFragmentDirections
 import com.example.test_loadmore.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_4_d_fragment.view.*
@@ -60,7 +63,14 @@ class Fragment_4D(var data: PopularResource): BaseFragment() {
 
         adapter = ImageAdapter(object : RecyclerItemListener {
             override fun onItemSelected(index: Int, data: OBase) {
+                var o = data as Image
 
+                var birections = MainFragmentDirections.actionMainFragmentToSwipeImageFragment(
+                    ArgumentDetailImage(o.id, o.type)
+                )
+                view?.let { _view ->
+                    Navigation.findNavController(_view).navigate(birections)
+                }
             }
 
             override fun onOption(index: Int, data: OBase) {
@@ -73,6 +83,13 @@ class Fragment_4D(var data: PopularResource): BaseFragment() {
 
         binding.rcclv4D.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.rcclv4D.adapter = adapter
+
+        binding.layout4DSearch.setOnClickListener {
+            var birections = MainFragmentDirections.actionMainFragmentToSearchFragment()
+            view?.let { _view ->
+                Navigation.findNavController(_view).navigate(birections)
+            }
+        }
 
         binding.rcclv4D.rcclv4D.addOnScrollListener(object :
             RecyclerView.OnScrollListener() {

@@ -15,6 +15,8 @@
         tools:context=".ui.component.main.live.LiveFragment">
 
         <RelativeLayout
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
             android:id="@+id/layoutTbLive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -33,6 +35,7 @@
                 />
 
             <RelativeLayout
+                android:id="@+id/layoutLiveSearch"
                 android:background="@drawable/bg_round_search"
                 android:layout_marginRight="15dp"
                 android:layout_alignParentRight="true"
@@ -58,14 +61,14 @@
             android:id="@+id/rcclvLive"
             />
 
-        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:id="@+id/pbTop"
-            android:layout_gravity="bottom"
-            android:indeterminate="true"
-            app:mpb_progressStyle="horizontal" />
+<!--        <me.zhanghai.android.materialprogressbar.MaterialProgressBar-->
+<!--            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="10dp"-->
+<!--            android:id="@+id/pbTop"-->
+<!--            android:layout_gravity="bottom"-->
+<!--            android:indeterminate="true"-->
+<!--            app:mpb_progressStyle="horizontal" />-->
 
     </RelativeLayout>
 </layout>

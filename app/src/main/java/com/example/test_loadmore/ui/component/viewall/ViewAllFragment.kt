@@ -72,7 +72,7 @@ class ViewAllFragment : BaseFragment() {
 
                 var birections =
                     ViewAllFragmentDirections.actionViewAllFragmentToDetailImageFragment(
-                        ArgumentDetailImage(o.id)
+                        ArgumentDetailImage(o.id, o.type)
                     )
                 view?.let { _view ->
                     Navigation.findNavController(_view).navigate(birections)

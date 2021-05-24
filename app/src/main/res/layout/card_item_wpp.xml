@@ -35,7 +35,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@{o.type == 2? @drawable/ic_btn_livewpp: o.type == 1 ? @drawable/ic_btn_4d: @drawable/ic_btn_4k}"
+                android:src="@{o.type == 2? @drawable/ic_btn_livewpp: o.type == 1 ? @drawable/ic_btn_4d: o.type == 3 ? @drawable/ic_btn_4k: @drawable/ic_empty}"
                 />
         </RelativeLayout>
 

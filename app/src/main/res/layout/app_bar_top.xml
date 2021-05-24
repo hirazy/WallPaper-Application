@@ -18,6 +18,8 @@
             android:background="#E6F6FFA2" />
 
         <LinearLayout
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
             android:id="@+id/layoutTopToolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -179,7 +181,6 @@
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rcclvTrending"
-                            android:paddingBottom="@dimen/_50sdp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 

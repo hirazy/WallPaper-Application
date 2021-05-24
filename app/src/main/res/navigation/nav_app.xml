@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_searchFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_detailImageFragment"
+            app:destination="@id/detailImageFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsActivity"
@@ -96,12 +99,21 @@
         <action
             android:id="@+id/action_detailImageFragment_to_viewAllFragment"
             app:destination="@id/viewAllFragment" />
+        <action
+            android:id="@+id/action_detailImageFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/swipeImageFragment"
         android:name="com.example.test_loadmore.ui.component.detail.swipe.SwipeImageFragment"
         android:label="swipe_image_fragment"
         tools:layout="@layout/swipe_image_fragment" >
+        <argument
+            android:name="data"
+            app:argType="com.example.test_loadmore.data.dto.argument.ArgumentDetailImage"
+            app:nullable="true"
+            />
+
         <action
             android:id="@+id/action_swipeImageFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
@@ -111,6 +123,13 @@
         android:name="com.example.test_loadmore.ui.component.detail.video.VideoImageFragment"
         android:label="video_image_fragment"
         tools:layout="@layout/video_image_fragment" >
+
+        <argument
+            android:name="data"
+            app:argType="com.example.test_loadmore.data.dto.argument.ArgumentDetailImage"
+            app:nullable="true"
+            />
+
         <action
             android:id="@+id/action_videoImageFragment_to_mainFragment"
             app:destination="@id/mainFragment" />

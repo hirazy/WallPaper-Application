@@ -53,6 +53,7 @@
         </RelativeLayout>
 
         <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/btnMenuDetail"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"

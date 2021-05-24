@@ -87,7 +87,7 @@ class TopFragment(var data: TopResource) : BaseFragment() {
             override fun onItemSelected(index: Int, data: OBase) {
                 var o = data as Image
                 var birections = MainFragmentDirections.actionMainFragmentToDetailImageFragment(
-                    ArgumentDetailImage(o.id)
+                    ArgumentDetailImage(o.id, o.type)
                 )
                 view?.let { _view ->
                     Navigation.findNavController(_view).navigate(birections)
@@ -116,7 +116,7 @@ class TopFragment(var data: TopResource) : BaseFragment() {
             override fun onItemSelected(index: Int, data: OBase) {
                 var o = data as Image
                 var birections = MainFragmentDirections.actionMainFragmentToDetailImageFragment(
-                    ArgumentDetailImage(o.id)
+                    ArgumentDetailImage(o.id, o.type)
                 )
                 view?.let { _view ->
                     Navigation.findNavController(_view).navigate(birections)
