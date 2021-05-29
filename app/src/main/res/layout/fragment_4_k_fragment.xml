@@ -7,7 +7,7 @@
 
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:background="#FFFFFF"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -59,17 +59,18 @@
             android:id="@+id/rcclv4K"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_below="@id/layoutTb4K"
             />
 
-<!--        <me.zhanghai.android.materialprogressbar.MaterialProgressBar-->
-<!--            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="10dp"-->
-<!--            android:id="@+id/pbTop"-->
-<!--            android:layout_gravity="bottom"-->
-<!--            android:indeterminate="true"-->
-<!--            app:mpb_progressStyle="horizontal" />-->
+        <ProgressBar
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/black"
+            android:id="@+id/pb4K"
+            />
 
-    </LinearLayout>
+
+    </RelativeLayout>
 </layout>

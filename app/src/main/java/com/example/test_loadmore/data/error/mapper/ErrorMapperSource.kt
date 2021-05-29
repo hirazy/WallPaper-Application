@@ -1,4 +1,4 @@
-package com.example.mod_gun.data.error.mapper
+package com.example.test_loadmore.data.error.mapper
 
 interface ErrorMapperSource {
     fun getErrorString(errorId: Int): String

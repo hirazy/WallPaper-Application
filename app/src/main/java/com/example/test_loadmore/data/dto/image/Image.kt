@@ -17,6 +17,6 @@ data class Image (
     var type: Int = 0
 ): OBase(){
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var uid: Long = 0
 }

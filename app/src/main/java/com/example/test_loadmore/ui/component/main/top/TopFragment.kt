@@ -1,16 +1,16 @@
 package com.example.test_loadmore.ui.component.main.top
 
-import android.R
-import android.annotation.TargetApi
-import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.system.Os.close
 import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,9 +18,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.test_loadmore.For_You
+import com.example.test_loadmore.R
+import com.example.test_loadmore.TYPE_DOWNLOAD
+import com.example.test_loadmore.TYPE_FAV
 import com.example.test_loadmore.base.OBase
 import com.example.test_loadmore.data.Resource
 import com.example.test_loadmore.data.dto.argument.ArgumentDetailImage
+import com.example.test_loadmore.data.dto.argument.ArgumentFavDownLoad
 import com.example.test_loadmore.data.dto.argument.ArgumentViewAll
 import com.example.test_loadmore.data.dto.categories.top.CategoryTop
 import com.example.test_loadmore.data.dto.config.TopResource
@@ -29,6 +33,7 @@ import com.example.test_loadmore.databinding.TopFragmentBinding
 import com.example.test_loadmore.ui.base.BaseFragment
 import com.example.test_loadmore.ui.base.listeners.RecyclerItemListener
 import com.example.test_loadmore.ui.component.adapter.ImageAdapter
+import com.example.test_loadmore.ui.component.fav_download.FavDownLoadFragmentDirections
 import com.example.test_loadmore.ui.component.main.MainFragmentDirections
 import com.example.test_loadmore.ui.component.main.top.adapter.CategoriesTopAdapter
 import com.example.test_loadmore.ui.component.main.top.adapter.YouAdapter
@@ -47,6 +52,8 @@ class TopFragment(var data: TopResource) : BaseFragment() {
 
     lateinit var adapterTrending: ImageAdapter
 
+    lateinit var toggle: ActionBarDrawerToggle;
+
     var list = ArrayList<Image>()
 
     private val viewModel: TopViewModel by viewModels()
@@ -63,6 +70,13 @@ class TopFragment(var data: TopResource) : BaseFragment() {
 
         binding = TopFragmentBinding.inflate(layoutInflater)
 
+        toggle = ActionBarDrawerToggle(
+            requireActivity(),
+            binding.drawerLayout,
+            R.string.open,
+            R.string.close
+        )
+
         handler = Handler()
 
         binding.drawerLayout.btnTopMenu.setOnClickListener {
@@ -73,12 +87,17 @@ class TopFragment(var data: TopResource) : BaseFragment() {
 
             }
         }
+
+        binding.drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+
         binding.drawerLayout.swrTop.setOnRefreshListener {
             var handler = Handler()
             handler.postDelayed({
                 init = false
                 binding.drawerLayout.swrTop.isRefreshing = false
-                // viewModel.reloadTrending()
+                viewModel.reloadTrending()
             }, 3000)
 
         }
@@ -139,28 +158,100 @@ class TopFragment(var data: TopResource) : BaseFragment() {
             }
         }
 
-        binding.drawerLayout.rcclvTrending.addOnScrollListener(object :
-            RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-            }
-
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val linearLayoutManager: LinearLayoutManager =
-                    recyclerView.layoutManager as LinearLayoutManager
-
-                if (!isLoading) {
-                    var size = viewModel.listTrendingLiveData.value?.data?.size!! - 1
-                    Log.e("loadMore", size.toString())
-                    if (size != -1 && linearLayoutManager.findLastCompletelyVisibleItemPosition() == size && size < viewModel.end - viewModel.start) {
-                        Log.e("loadMore", "viewModel")
-                        loadMore()
-                        isLoading = true
+        binding.drawerLayout.nstTop.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v: NestedScrollView, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            if (v.getChildAt(v.childCount - 1) != null) {
+                if (scrollY >= v.getChildAt(v.childCount - 1)
+                        .measuredHeight - v.measuredHeight &&
+                    scrollY > oldScrollY
+                ) {
+                    if (!isLoading) {
+                        var size = viewModel.listTrendingLiveData.value?.data?.size!! - 1
+                        Log.e("loadMore", size.toString())
+                        if (size != -1 && size < viewModel.end - viewModel.start) {
+                            Log.e("loadMore", "viewModel")
+                            loadMore()
+                            isLoading = true
+                        }
                     }
                 }
             }
-        })
+        } as NestedScrollView.OnScrollChangeListener)
+
+//        binding.drawerLayout.rcclvTrending.addOnScrollListener(object :
+//            RecyclerView.OnScrollListener() {
+//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//                super.onScrollStateChanged(recyclerView, newState)
+//            }
+//
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//                val linearLayoutManager: LinearLayoutManager =
+//                    recyclerView.layoutManager as LinearLayoutManager
+//
+//                Log.e(
+//                    "rcclvTrending",
+//                    "onScrolled: " + linearLayoutManager.findLastCompletelyVisibleItemPosition()
+//                )
+//
+//
+//            }
+//        })
+
+        binding.navView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.itemNavDouble -> {
+
+                    binding.drawerLayout.close()
+                }
+
+                R.id.itemNavFavorites -> {
+                    var birections = MainFragmentDirections.actionMainFragmentToFavDownLoadFragment(
+                        ArgumentFavDownLoad(TYPE_FAV)
+                    )
+                    view?.let { _view ->
+                        Navigation.findNavController(_view).navigate(birections)
+                    }
+                    binding.drawerLayout.close()
+                }
+
+                R.id.itemNavDownLoads -> {
+                    var birections = MainFragmentDirections.actionMainFragmentToFavDownLoadFragment(
+                        ArgumentFavDownLoad(TYPE_DOWNLOAD)
+                    )
+                    view?.let { _view ->
+                        Navigation.findNavController(_view).navigate(birections)
+                    }
+                    binding.drawerLayout.close()
+                }
+
+                R.id.itemNavAutoChangeWPP -> {
+
+                    binding.drawerLayout.close()
+                }
+
+                R.id.itemNavShare -> {
+
+                    binding.drawerLayout.close()
+                }
+
+                R.id.itemNavRate -> {
+
+                    binding.drawerLayout.close()
+                }
+
+                R.id.itemNavPolicy -> {
+
+                    binding.drawerLayout.close()
+                }
+
+                R.id.itemNavAbout -> {
+
+                    binding.drawerLayout.close()
+                }
+            }
+
+            true
+        }
 
         viewModel.fetchData(data)
 
@@ -245,6 +336,7 @@ class TopFragment(var data: TopResource) : BaseFragment() {
         when (data) {
             is Resource.Success -> {
                 if (!init) {
+
                     binding.drawerLayout.pbTopTrending.visibility = View.GONE
                     list = ArrayList<Image>(data.data!!)
                     adapterTrending.setData(list)
@@ -266,7 +358,7 @@ class TopFragment(var data: TopResource) : BaseFragment() {
         binding.drawerLayout.pbTop.visibility = View.VISIBLE
 
         handler.postDelayed({
-            var ind = viewModel.listTrendingLiveData.value!!.data!!.size
+            var ind = list.size
             Log.e("postDelayed", ind.toString())
             viewModel.loadMore()
             Log.e("postDelayed", viewModel.listTrendingLiveData.value!!.data!!.size.toString())
@@ -274,13 +366,14 @@ class TopFragment(var data: TopResource) : BaseFragment() {
             var listTmp = viewModel.listTrendingLiveData.value!!.data
 
             for (i in ind until listTmp!!.size) {
-
+                list.add(listTmp[i])
             }
 
             adapterTrending.notifyItemRangeInserted(
                 ind,
-                viewModel.listTrendingLiveData.value!!.data!!.size - ind
+                list.size - ind
             )
+
             isLoading = false
             binding.drawerLayout.pbTop.visibility = View.GONE
         }, 2000)

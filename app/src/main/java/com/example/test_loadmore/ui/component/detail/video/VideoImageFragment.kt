@@ -18,6 +18,7 @@ import com.example.test_loadmore.R
 import com.example.test_loadmore.databinding.VideoImageFragmentBinding
 import com.example.test_loadmore.ui.base.BaseFragment
 import com.example.test_loadmore.ui.component.detail.image.DetailImageFragmentArgs
+import kotlinx.coroutines.*
 
 class VideoImageFragment : BaseFragment() {
 
@@ -41,10 +42,15 @@ class VideoImageFragment : BaseFragment() {
 
         binding.videoViewImage.setVideoURI(Uri.parse(urlVideo))
         binding.videoViewImage.start()
+
+        // var waitLoading: Job = startRepeatingJob(100)
+
+
         binding.videoViewImage.setOnPreparedListener {
             it.setOnBufferingUpdateListener { mediaPlayer: MediaPlayer, i: Int ->
                 binding.linearProgress.progress = i
             }
+            binding.linearProgress.visibility = View.GONE
 
             it.isLooping = true
         }
@@ -53,12 +59,20 @@ class VideoImageFragment : BaseFragment() {
             view?.let { _view ->
                 view?.findNavController()?.navigateUp()
             }
-
         }
 
         var view = binding.root
 
         return view
+    }
+
+    private fun startRepeatingJob(timeInterval: Long): Job {
+        return CoroutineScope(Dispatchers.Default).launch {
+            while (binding.videoViewImage.currentPosition < 100) {
+
+                delay(timeInterval)
+            }
+        }
     }
 
 }

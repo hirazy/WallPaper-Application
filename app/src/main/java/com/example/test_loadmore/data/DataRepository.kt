@@ -48,27 +48,38 @@ class DataRepository @Inject constructor(
     }
 
     override suspend fun requestViewAll(): Flow<Resource<List<CategoryL>>> {
-        return flow{
+        return flow {
             emit(remoteDataRepository.requestViewAll())
         }.flowOn(context)
     }
 
-    override suspend fun addFavorite(id: String): Flow<Resource<Boolean>> {
+    override suspend fun addToFavorite(idImage: String): Flow<Resource<Boolean>> {
         return flow {
-//            localData.getCachedFavourites().let {
-//                it.data?.toMutableSet()?.let { set ->
-//                    val isAdded = set.add(id)
-//                    if (isAdded) {
-//                        emit(localData.cacheFavorites(set))
-//                    } else {
-//                        emit(Resource.Success(false))
-//                    }
-//                }
-//                it.errorCode?.let { errorCode ->
-//                    emit(Resource.DataError<Boolean>(errorCode))
-//                }
-//            }
-        }//.flowOn(context)
+            localData.getCachedFavourites().let {
+                it.data?.toMutableSet()?.let { set ->
+                    val isAdded = set.add(idImage)
+                    if (isAdded) {
+                        emit(localData.cacheFavorites(set))
+                    } else {
+                        emit(Resource.Success(false))
+                    }
+                }
+                it.errorCode?.let { errorCode ->
+                    emit(Resource.DataError<Boolean>(errorCode))
+                }
+            }
+        }.flowOn(context)
     }
 
+    override suspend fun isFavourite(idImage: String): Flow<Resource<Boolean>> {
+        return flow {
+            emit(localData.isFavorite(idImage))
+        }.flowOn(context)
+    }
+
+    override suspend fun removeFromFavourite(idImage: String): Flow<Resource<Boolean>> {
+        return flow {
+            emit(localData.removeFromFavorite(idImage))
+        }.flowOn(context)
+    }
 }

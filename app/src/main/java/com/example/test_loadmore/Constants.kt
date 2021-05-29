@@ -8,9 +8,12 @@ package com.example.test_loadmore
  * KEY DATABASE
  */
 
+var SHARED_PREFERENCES_APP = "shared_preferences_app"
+
 var EMAIL_REPORT = "nangle1234567@gmail.com"
 
 var KEY_DATABASE = "key_database"
+var FAVOURITES_KEY = "favorite_key"
 
 var URL_IMAGE = "https://github.com/hirazy2001/WallPaper"
 
@@ -21,6 +24,9 @@ var NIGHT_MODE = "night_mode"
 var LIGHT_MODE = "light_mode"
 var BASE_URL = "https://raw.githubusercontent.com/hirazy2001/WallPaper/main/"
 var BASE_URL_VIDEO = "https://github.com/hirazy2001/WallPaper/raw/main/live/"
+
+var TYPE_FAV = 0
+var TYPE_DOWNLOAD = 1
 
 /**
  * KEY TYPE
@@ -72,7 +78,45 @@ var Tourism = "Tourism"
 var Vehicles = "Vehicles"
 var WaterDrop = "WaterDrop"
 
-var listType = listOf<String>(VIEW_ALL, _3D, Abstract, Aircraft, Amoled, AnimalBird, Anime, Architecture, Art,
-    Babies, Bokeh, Candle, Cartoon, Flowers, For_You, Food, Game, Girl, Kawaii, Love, Macro, Mask, Material,
-    Men, Minimal, Mountain, MultiColor, Music, Nature, NeonFireworks, Ocean, Quote, Reflections, Space, Sports,
-    Stock, Texture, Tourism, Vehicles, WaterDrop)
+var listType = listOf<String>(
+    VIEW_ALL,
+    _3D,
+    Abstract,
+    Aircraft,
+    Amoled,
+    AnimalBird,
+    Anime,
+    Architecture,
+    Art,
+    Babies,
+    Bokeh,
+    Candle,
+    Cartoon,
+    Flowers,
+    For_You,
+    Food,
+    Game,
+    Girl,
+    Kawaii,
+    Love,
+    Macro,
+    Mask,
+    Material,
+    Men,
+    Minimal,
+    Mountain,
+    MultiColor,
+    Music,
+    Nature,
+    NeonFireworks,
+    Ocean,
+    Quote,
+    Reflections,
+    Space,
+    Sports,
+    Stock,
+    Texture,
+    Tourism,
+    Vehicles,
+    WaterDrop
+)

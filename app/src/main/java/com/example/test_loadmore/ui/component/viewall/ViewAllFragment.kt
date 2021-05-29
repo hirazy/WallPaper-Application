@@ -21,6 +21,7 @@ import com.example.test_loadmore.ui.base.BaseFragment
 import com.example.test_loadmore.ui.base.listeners.RecyclerItemListener
 import com.example.test_loadmore.ui.component.adapter.ImageAdapter
 import com.example.test_loadmore.ui.component.main.MainFragmentDirections
+import com.example.test_loadmore.utils.convertType
 import com.example.test_loadmore.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,14 +56,14 @@ class ViewAllFragment : BaseFragment() {
 
         var name = ""
 
-        for (i in 0 until listType.size) {
-            if (args.data!!.name == listType[i]) {
-                name = args.data!!.name
-                break
-            }
-        }
+//        for (i in 0 until listType.size) {
+//            if (args.data!!.name == listType[i]) {
+//                name = args.data!!.name
+//                break
+//            }
+//        }
 
-        binding.tvViewAll.text = name
+        binding.tvViewAll.text = args.data!!.name
 
 
         adapter = ImageAdapter(object : RecyclerItemListener {

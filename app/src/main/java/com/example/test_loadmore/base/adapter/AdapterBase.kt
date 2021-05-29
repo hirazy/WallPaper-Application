@@ -16,7 +16,7 @@ class BaseHolder<T : ViewDataBinding>(var itemBinding: T) :
 
 abstract class AdapterBase<K : OBase, T : ViewDataBinding>(var event: RecyclerItemListener) :
     RecyclerView.Adapter<BaseHolder<T>>() {
-    protected val listData = arrayListOf<K>()
+    protected var listData = arrayListOf<K>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<T> {
@@ -37,7 +37,7 @@ abstract class AdapterBase<K : OBase, T : ViewDataBinding>(var event: RecyclerIt
 
     fun setData(it: List<K>) {
         listData.clear()
-        listData.addAll(it)
+        listData = it as ArrayList<K>
         notifyDataSetChanged()
     }
 

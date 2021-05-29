@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.test_loadmore.BASE_URL
 import com.example.test_loadmore.R
@@ -36,6 +37,15 @@ class SwipeImageFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        requireActivity().window.decorView.apply {
+            // Hide both the navigation bar and the status bar.
+            // SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
+            // a general rule, you should design your app to hide the status bar whenever you
+            // hide the navigation bar.
+            systemUiVisibility =
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_FULLSCREEN
+        }
+
         binding = SwipeImageFragmentBinding.inflate(layoutInflater)
 
         var o = args.data
@@ -47,6 +57,12 @@ class SwipeImageFragment : BaseFragment() {
         }
         else{
             typeVal = "4d/"
+        }
+
+        binding.layoutDetailSwipeBack.setOnClickListener {
+            view?.let { _view ->
+                view?.findNavController()?.navigateUp()
+            }
         }
 
         Picasso.get().load(BASE_URL + typeVal + o!!.id + ".jpg").fit()

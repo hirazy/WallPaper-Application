@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
@@ -43,14 +44,15 @@ class Fragment_4D(var data: PopularResource): BaseFragment() {
         when (data) {
             is Resource.Success -> {
                 adapter.setData(data.data!!)
+                binding.pb4D.visibility = View.GONE
             }
 
             is Resource.Loading -> {
-
+                binding.pb4D.visibility = View.VISIBLE
             }
 
             is Resource.DataError -> {
-
+                binding.pb4D.visibility = View.GONE
             }
         }
     }
@@ -59,6 +61,7 @@ class Fragment_4D(var data: PopularResource): BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = Fragment4DFragmentBinding.inflate(layoutInflater)
 
         adapter = ImageAdapter(object : RecyclerItemListener {

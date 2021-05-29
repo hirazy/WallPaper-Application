@@ -57,4 +57,10 @@
     <string name="contentReportSexual">Please briefly explain why you found it Sexually Explicit</string>
     <string name="contentReportOffensive">Please briefly explain why you found it Offensive</string>
     <string name="contentReportCopyrighted">Please briefly explain why you found it Copyrighted</string>
+
+    <string name="tvMyFavorite">My Favorite</string>
+    <string name="tvMyDownLoad">My DownLoad</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>

@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_mainFragment_to_videoImageFragment"
             app:destination="@id/videoImageFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_favDownLoadFragment"
+            app:destination="@id/favDownLoadFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -102,6 +105,9 @@
         <action
             android:id="@+id/action_detailImageFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_detailImageFragment_to_favDownLoadFragment"
+            app:destination="@id/favDownLoadFragment" />
     </fragment>
     <fragment
         android:id="@+id/swipeImageFragment"
@@ -133,5 +139,24 @@
         <action
             android:id="@+id/action_videoImageFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favDownLoadFragment"
+        android:name="com.example.test_loadmore.ui.component.fav_download.FavDownLoadFragment"
+        android:label="fav_down_load_fragment"
+        tools:layout="@layout/fav_down_load_fragment" >
+
+        <argument
+            android:name="data"
+            app:argType="com.example.test_loadmore.data.dto.argument.ArgumentFavDownLoad"
+            app:nullable="true"
+            />
+
+        <action
+            android:id="@+id/action_favDownLoadFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_favDownLoadFragment_to_detailImageFragment"
+            app:destination="@id/detailImageFragment" />
     </fragment>
 </navigation>

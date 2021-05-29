@@ -1,6 +1,6 @@
 package com.example.test_loadmore.di
 
-import com.example.mod_gun.data.error.mapper.ErrorMapperSource
+import com.example.test_loadmore.data.error.mapper.ErrorMapperSource
 import com.example.test_loadmore.data.error.mapper.ErrorMapper
 import com.example.test_loadmore.error.ErrorUseCase
 

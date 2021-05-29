@@ -58,6 +58,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/layout4DTB" />
 
+        <ProgressBar
+            android:id="@+id/pb4D"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/black"
+            android:layout_centerInParent="true"
+            />
+
 <!--        <me.zhanghai.android.materialprogressbar.MaterialProgressBar-->
 <!--            android:id="@+id/pbTop"-->
 <!--            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"-->

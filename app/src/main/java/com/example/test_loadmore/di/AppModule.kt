@@ -46,4 +46,8 @@ class AppModule {
         ).allowMainThreadQueries().build()
     }
 
+    @Singleton
+    @Provides
+    fun provideYourDao(db: RoomDB) = db.daoImage
+
 }

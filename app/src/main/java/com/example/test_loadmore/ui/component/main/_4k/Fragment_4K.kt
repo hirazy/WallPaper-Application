@@ -41,6 +41,7 @@ class Fragment_4K(var data: PopularResource) : BaseFragment() {
             is Resource.Success -> {
                 Log.e("handleRequest4K", data.data!!.size.toString())
                 adapter.setData(data.data!!)
+                binding.pb4K.visibility = View.GONE
             }
 
             is Resource.Loading -> {

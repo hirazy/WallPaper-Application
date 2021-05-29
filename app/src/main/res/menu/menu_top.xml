@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/itemNavDouble" android:title="Double Wallpaper" />
-    <item android:id="@+id/itemNavFavorites" android:title="My Favorites"/>
-    <item android:id="@+id/itemNavDownLoads" android:title="My DownLoads"/>
+    <item android:icon="@drawable/ic_nav_double" android:id="@+id/itemNavDouble" android:title="Double Wallpaper" />
+    <item android:icon="@drawable/ic_nav_favorite" android:id="@+id/itemNavFavorites" android:title="My Favorites"/>
+    <item android:id="@+id/itemNavDownLoads" android:icon="@drawable/ic_nav_download" android:title="My DownLoads"/>
     <item android:id="@+id/itemNavAutoChangeWPP" android:title="Auto WallPaper Change"/>
     <item android:title="More Option">
         <menu>
-            <item android:title="Share App" android:id="@+id/itemNavShare"/>
-            <item android:title="Rate us" android:id="@+id/itemNavRate"/>
-            <item android:title="Privacy Policy" android:id="@+id/itemNavPolicy"/>
+            <item android:icon="@drawable/ic_nav_share" android:title="Share App" android:id="@+id/itemNavShare"/>
+            <item android:icon="@drawable/ic_nav_rating" android:title="Rate us" android:id="@+id/itemNavRate"/>
+            <item android:icon="@drawable/ic_nav_privacy" android:title="Privacy Policy" android:id="@+id/itemNavPolicy"/>
             <item android:title="About us" android:id="@+id/itemNavAbout"/>
         </menu>
     </item>

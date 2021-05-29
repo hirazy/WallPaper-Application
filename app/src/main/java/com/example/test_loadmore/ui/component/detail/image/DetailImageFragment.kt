@@ -5,7 +5,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
 import android.view.*
 import android.widget.Button
 import android.widget.LinearLayout
@@ -21,19 +21,21 @@ import com.downloader.OnDownloadListener
 import com.downloader.PRDownloader
 import com.example.test_loadmore.BASE_URL
 import com.example.test_loadmore.EMAIL_REPORT
-import com.example.test_loadmore.For_You
 import com.example.test_loadmore.R
+import com.example.test_loadmore.data.Resource
 import com.example.test_loadmore.data.dto.argument.ArgumentDetailImage
 import com.example.test_loadmore.data.dto.argument.ArgumentViewAll
 import com.example.test_loadmore.databinding.DetailImageFragmentBinding
 import com.example.test_loadmore.ui.base.BaseFragment
-import com.example.test_loadmore.ui.component.main.MainFragmentDirections
 import com.example.test_loadmore.utils.FileUtil
 import com.example.test_loadmore.utils.convertType
+import com.example.test_loadmore.utils.observe
+import com.kaopiz.kprogresshud.KProgressHUD
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 
-
+@AndroidEntryPoint
 class DetailImageFragment : BaseFragment() {
 
     val args by navArgs<DetailImageFragmentArgs>()
@@ -42,21 +44,43 @@ class DetailImageFragment : BaseFragment() {
 
     lateinit var o: ArgumentDetailImage
 
+    private var hud: KProgressHUD? = null
+
     private val viewModel: DetailImageViewModel by viewModels()
 
     val test: Int by lazy {
         1
     }
 
-
     override fun observeViewModel() {
+        observe(viewModel.isFavourite, ::handleIsFavorite)
+    }
 
+    private fun handleIsFavorite(req: Resource<Boolean>){
+        when(req){
+            is Resource.Success ->{
+                handleIsFavouriteUI(req)
+                hud!!.dismiss()
+            }
+
+            is Resource.Loading ->{
+                hud!!.show()
+            }
+
+            is Resource.DataError ->{
+                hud!!.dismiss()
+            }
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        hud = KProgressHUD.create(requireActivity())
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+
 
         PRDownloader.initialize(requireActivity().applicationContext);
 
@@ -105,16 +129,19 @@ class DetailImageFragment : BaseFragment() {
             } else {
                 Toast.makeText(requireContext(), "Cannot share!", Toast.LENGTH_SHORT).show()
             }
+            binding.btnMenuDetail.close(true)
 
         }
 
         binding.btnDetailCategory.setOnClickListener {
-            var birections = DetailImageFragmentDirections.actionDetailImageFragmentToViewAllFragment(
-                ArgumentViewAll(convertType(o.type))
-            )
+            var birections =
+                DetailImageFragmentDirections.actionDetailImageFragmentToViewAllFragment(
+                    ArgumentViewAll(convertType(o.type))
+                )
             view?.let { _view ->
                 Navigation.findNavController(_view).navigate(birections)
             }
+            binding.btnMenuDetail.close(true)
         }
 
         binding.btnDetailDownLoad.setOnClickListener {
@@ -152,33 +179,49 @@ class DetailImageFragment : BaseFragment() {
                 dialog.dismiss()
             }
             dialog.show()
+            binding.btnMenuDetail.close(true)
         }
 
         binding.btnDetailFavorite.setOnClickListener {
-            viewModel.clickFavorite()
+            if (viewModel.isFavourite.value?.data == true) {
+                viewModel.removeFromFavorite()
+            } else {
+                viewModel.addFavorite()
+            }
         }
 
         binding.btnDetailPreview.setOnClickListener {
 
         }
-
         val view = binding.root
         return view
+    }
+
+    private fun handleIsFavouriteUI(isFavorite: Resource<Boolean>){
+        if(isFavorite.data == true){
+            binding.imgDetailFavorite.setImageDrawable(resources.getDrawable(R.drawable.ic_detail_favorite))
+        }
+        else{
+            binding.imgDetailFavorite.setImageDrawable(resources.getDrawable(R.drawable.ic_detail_unfavorite))
+        }
     }
 
     private fun sendEmail(content: String) {
 
         val emailIntent = Intent(Intent.ACTION_SEND)
         emailIntent.data = Uri.parse("mailto:")
-        emailIntent.setClassName("com.google.android.gm", "com.google.android.gm.ConversationListActivity");
+        emailIntent.setClassName(
+            "com.google.android.gm",
+            "com.google.android.gm.ConversationListActivity"
+        );
         emailIntent.type = "text/plain"
         emailIntent.putExtra(Intent.EXTRA_EMAIL, EMAIL_REPORT)
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Report Item ID: " + o.id)
-      //  emailIntent.addCategory(Intent.CATEGORY_APP_EMAIL);
+        //  emailIntent.addCategory(Intent.CATEGORY_APP_EMAIL);
         emailIntent.putExtra(Intent.EXTRA_TEXT, content)
 
         try {
-           // startActivity(Intent.createChooser(emailIntent, getString(R.string.open_email_app)))
+            // startActivity(Intent.createChooser(emailIntent, getString(R.string.open_email_app)))
         } catch (ex: ActivityNotFoundException) {
             Toast.makeText(
                 requireContext(),
@@ -239,7 +282,6 @@ class DetailImageFragment : BaseFragment() {
         binding.btnMenuDetail.close(true)
 
     }
-
 
 
 }

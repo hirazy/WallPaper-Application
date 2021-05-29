@@ -19,5 +19,9 @@ interface DataRepositorySource{
 
     suspend fun requestViewAll(): Flow<Resource<List<CategoryL>>>
 
-    suspend fun addFavorite(id: String): Flow<Resource<Boolean>>
+    suspend fun addToFavorite(content: String): Flow<Resource<Boolean>>
+
+    suspend fun isFavourite(content: String): Flow<Resource<Boolean>>
+
+    suspend fun removeFromFavourite(content: String): Flow<Resource<Boolean>>
 }

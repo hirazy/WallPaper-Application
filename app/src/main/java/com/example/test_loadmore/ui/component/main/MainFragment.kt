@@ -67,6 +67,10 @@ class MainFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        requireActivity().window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
         binding = FragmentMainBinding.inflate(layoutInflater)
         val view = binding.root
 

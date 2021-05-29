@@ -114,7 +114,7 @@ class TopViewModel @Inject constructor(var dataRepositorySource: DataRepositoryS
         var tmpListTrending = ArrayList<Image>(listTrendingPrivate.value!!.data!!)
         var range = end - start + 1
 
-        while (cnt1 < 21) {
+        while (cnt1 < 24) {
             var randInd = start + Random().nextInt(range)
 
             if (!setForYou.contains(randInd)) {
@@ -129,10 +129,11 @@ class TopViewModel @Inject constructor(var dataRepositorySource: DataRepositoryS
     fun reloadTrending() {
         var cnt1 = 0
         var tmpListTrending = ArrayList<Image>()
-
         var range = end - start + 1
+
+        setForYou = hashSetOf()
 //
-        while (cnt1 < 10) {
+        while (cnt1 < 24) {
             var randInd = start + Random().nextInt(range)
 
             if (!setForYou.contains(randInd)) {
